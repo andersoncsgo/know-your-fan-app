@@ -1,42 +1,136 @@
-/* Conteúdo COMPLETO e CORRETO para frontend/src/App.css */
+/* ============================================= */
+/* ===      CÓDIGO COMPLETO PARA App.css      === */
+/* ============================================= */
+
+/* --- Definições Globais e Tema Claro --- */
+:root {
+  /* Paleta de Cores (Tema Claro) */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --border-color: #dee2e6;
+  --link-color: #007bff;
+  --furia-orange: #ff5500; /* Cor específica da marca */
+  --logo-filter: none; /* Filtro para logo no tema claro */
+
+  /* Definições de Fonte Globais */
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light; /* Esquema de cores para o navegador */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Tema Escuro --- */
+body[data-theme='dark'] {
+  /* Paleta de Cores (Tema Escuro) */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #101010;
+  --bg-tertiary: #2a2a2a;
+  --text-primary: #f1f1f1;
+  --text-secondary: #aaa;
+  --border-color: #333;
+  --link-color: #58a6ff;
+  /* Inverte ou ajusta brilho do logo SVG/PNG no escuro */
+  --logo-filter: invert(0.9) brightness(1.1);
+
+  color-scheme: dark; /* Esquema de cores para o navegador */
+}
+
+/* --- Estilos Globais do Body e Root --- */
+body {
+  margin: 0;
+  display: flex; /* Ajuda na centralização inicial, pode ser ajustado */
+  place-items: center; /* Ajuda na centralização inicial */
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--text-primary); /* Cor de texto padrão */
+  background-color: var(--bg-secondary); /* Cor de fundo padrão da página */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave de tema */
+}
+
+#root {
+  width: 100%; /* Garante que o container root ocupe a largura */
+}
+
+/* --- Estilos Específicos da Aplicação "Know Your Fan" --- */
 .App {
   max-width: 800px;
   margin: 2rem auto;
-  padding: 2rem;
-  border: 1px solid #ccc;
+  /* Adiciona padding-top para compensar o Header fixo */
+  /* Ajuste 70px se a altura do seu Header for diferente (60px + 10px margem) */
+  padding: 70px 2rem 2rem 2rem;
+  border: 1px solid var(--border-color); /* Usa variável */
   border-radius: 8px;
-  font-family: sans-serif;
-  background-color: #f9f9f9;
+  /* font-family pode ser herdado do :root */
+  background-color: var(--bg-primary); /* Usa variável */
+  /* Adiciona transição para a mudança de cor de fundo/borda do App */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 h1,
 h2 {
-  color: #333;
+  color: var(--text-primary); /* Usa variável */
   text-align: center;
   margin-bottom: 1rem;
 }
 
 h2 {
   margin-top: 2rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color); /* Usa variável */
   padding-bottom: 0.5rem;
 }
 
 .profile-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* Espaçamento entre grupos */
+  gap: 1.5rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* Espaçamento entre label e input */
+  border-radius: 8px;
+  /* font-family: sans-serif; */ /* Herdado do :root */
+  background-color: var(--bg-primary); /* Usa variável */
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* Transição suave */
+}
+
+h1,
+h2 {
+  color: var(--text-primary); /* Usa variável */
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  margin-top: 2rem;
+  border-bottom: 1px solid var(--border-color); /* Usa variável */
+  padding-bottom: 0.5rem;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .form-group label {
   font-weight: bold;
-  color: #555;
+  color: var(--text-secondary); /* Usa variável */
 }
 
 .form-group input[type='text'],
@@ -44,33 +138,48 @@ h2 {
 .form-group input[type='file'],
 .form-group textarea {
   padding: 0.8rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color); /* Usa variável */
+  background-color: var(--bg-primary); /* Fundo do input */
+  color: var(--text-primary); /* Cor do texto do input */
   border-radius: 4px;
   font-size: 1rem;
-  width: 100%; /* Faz ocupar a largura disponível */
-  box-sizing: border-box; /* Inclui padding e border na largura total */
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
+/* Estilo para quando o input está focado (opcional) */
+.form-group input[type='text']:focus,
+.form-group input[type='url']:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--link-color); /* Muda a borda ao focar */
+  box-shadow: 0 0 0 2px rgba(var(--link-color-rgb, 0, 123, 255), 0.25); /* Adiciona um brilho (precisa de --link-color-rgb se for usar) */
+}
+
+
 .form-group textarea {
-  resize: vertical; /* Permite redimensionar apenas verticalmente */
+  resize: vertical;
 }
 
 .form-group input[type='file'] {
   border: none;
   padding-left: 0;
+  background-color: transparent; /* Fundo transparente para input de file */
+  color: var(--text-secondary); /* Cor do texto "escolher arquivo" */
 }
 
 .link-group label {
-  margin-top: 0.5rem; /* Espaço antes de cada label de link */
+  margin-top: 0.5rem;
 }
 
 .link-group input {
-  margin-bottom: 0.5rem; /* Espaço depois de cada input de link */
+  margin-bottom: 0.5rem;
 }
 
 button[type='submit'] {
   padding: 1rem 1.5rem;
-  background-color: #ff5500; /* Cor Laranja FURIA (exemplo) */
+  background-color: #ff5500; /* Mantém laranja Furia */
   color: white;
   border: none;
   border-radius: 5px;
@@ -78,69 +187,97 @@ button[type='submit'] {
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 1rem;
-  align-self: center; /* Centraliza o botão */
+  align-self: center;
 }
 
 button[type='submit']:hover {
-  background-color: #cc4400;
+  background-color: #cc4400; /* Laranja mais escuro no hover */
 }
 
 button[type='submit']:disabled {
-  background-color: #ccc;
+  background-color: var(--bg-tertiary); /* Usa variável */
+  color: var(--text-secondary); /* Usa variável */
   cursor: not-allowed;
 }
 
+/* --- Corrigido: Estilos das Mensagens --- */
 .message {
   padding: 1rem;
   margin-bottom: 1rem;
   border-radius: 4px;
   text-align: center;
+  border: 1px solid transparent; /* Borda base */
+  /* Adiciona transição suave para as mudanças de cor */
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
+/* Estilos base (Light Theme) */
 .message.success {
-  background-color: #e6ffed;
-  color: #006400;
-  border: 1px solid #c3e6cb;
+  background-color: #e6ffed; /* Cor clara */
+  color: #006400; /* Cor clara */
+  border-color: #c3e6cb; /* Cor clara */
 }
-
 .message.error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
+  background-color: #f8d7da; /* Cor clara */
+  color: #721c24; /* Cor clara */
+  border-color: #f5c6cb; /* Cor clara */
 }
-
 .message.loading {
-  background-color: #e2e3e5;
-  color: #383d41;
-  border: 1px solid #d6d8db;
+  /* Loading geralmente usa cores neutras que funcionam em ambos os temas */
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border-color: var(--border-color);
 }
 
+/* Sobrescritas específicas para o Dark Theme */
+body[data-theme='dark'] .message.success {
+  background-color: #1c4b2b; /* Cor escura */
+  color: #a3ffc3; /* Cor escura */
+  border-color: #3c764a; /* Cor escura */
+}
+body[data-theme='dark'] .message.error {
+  background-color: #5d1c21; /* Cor escura */
+  color: #ffb3b8; /* Cor escura */
+  border-color: #84353a; /* Cor escura */
+}
+/* A regra .message.loading herdará as variáveis --bg-tertiary, etc., do tema escuro */
+
+/* --- Fim da Correção --- */
+
+/* O restante do seu CSS (.status, .profile-summary, etc.) continua aqui... */
 .status {
   font-size: 0.85em;
-  color: #007bff;
+  color: var(--link-color);
   margin-left: 10px;
 }
 
 .profile-summary {
   margin-top: 3rem;
   padding: 1rem;
-  background-color: #eee;
-  border: 1px dashed #ccc;
+  background-color: var(--bg-tertiary); /* Usa variável */
+  border: 1px dashed var(--border-color); /* Usa variável */
   border-radius: 5px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
+
 .profile-summary h3 {
   text-align: left;
   margin-bottom: 1rem;
   border: none;
+  color: var(--text-primary); /* Usa variável */
 }
+
 .profile-summary pre {
-  white-space: pre-wrap; 
+  white-space: pre-wrap;
   word-wrap: break-word;
   max-height: 400px;
   overflow-y: auto;
-  background-color: #fdfdfd;
+  background-color: var(--bg-primary); /* Usa variável */
+  color: var(--text-secondary); /* Usa variável */
   padding: 10px;
   border-radius: 3px;
+  border: 1px solid var(--border-color); /* Adiciona borda sutil */
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 /* Estilo básico para melhorar a aparência do input de CPF */
