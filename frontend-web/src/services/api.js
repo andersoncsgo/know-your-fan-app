@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // URL base da sua API Flask (ajuste se necessário)
-const API_URL = 'http://localhost:5000/api'; // Certifique-se que o backend está rodando nesta porta
+const API_URL = 'https://know-your-fan-app-u87d.onrender.com/api'; // Certifique-se que o backend está rodando nesta porta
 
 const apiClient = axios.create({
   baseURL: API_URL,
